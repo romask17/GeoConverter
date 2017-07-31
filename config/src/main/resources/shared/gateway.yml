@@ -1,8 +1,27 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+
+ribbon:
+  ReadTimeout: 2000
+  ConnectTimeout: 2000
+
 server:
   port: 4000
 
 zuul:
   ignoredServices: '*'
   host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
+    connect-timeout-millis: 2000
+    socket-timeout-millis: 2000
+
+  routes:
+    geo-service:
+      path: /geo-converter/**
+      serviceId: geo-service
+      stripPrefix: false
+      sensitiveHeaders:

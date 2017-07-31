@@ -12,6 +12,7 @@
         <module>gateway</module>
         <module>registry</module>
         <module>monitoring</module>
+        <module>geo-service</module>
     </modules>
     <packaging>pom</packaging>
 
