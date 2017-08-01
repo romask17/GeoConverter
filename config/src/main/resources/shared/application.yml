@@ -1,6 +1,10 @@
 logging:
   level:
-    org.springframework.security: INFO
+    #org.springframework.security: INFO
+    com.geoconverter.geo.service: DEBUG
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level - %msg%n"
+  file: application.log
 
 hystrix:
   command:
