@@ -5,7 +5,7 @@ import com.geoconverter.geo.entity.GeoObject;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GeoConverterService {
+public class GeoConverterObjectServiceImpl implements GeoConverterObjectService {
     public GeoObject convertToFinalGeoObject(GeoObjectDto geographicObject) {
         String addressLine = geographicObject.getAddressLine();
         String location = geographicObject.getLocation();
