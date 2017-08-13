@@ -1,0 +1,48 @@
+sudo: required
+
+services:
+  - docker
+
+language: java
+jdk: oraclejdk8
+
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::7}
+
+after_success:
+  - docker login -u $D_USER -p $D_PASS
+
+  #TAG
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+
+  # CONFIG SERVICE
+  - export CONFIG=safeone17/geoconverter-config
+  - docker build -t $CONFIG:$COMMIT ./config
+  - docker tag $CONFIG:$COMMIT $CONFIG:$TAG
+  - docker push $CONFIG
+
+  # REGISTRY
+  - export REGISTRY=safeone17/geoconverter-registry
+  - docker build -t $REGISTRY:$COMMIT ./registry
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  # GATEWAY
+  - export GATEWAY=safeone17/geoconverter-gateway
+  - docker build -t $GATEWAY:$COMMIT ./gateway
+  - docker tag $GATEWAY:$COMMIT $GATEWAY:$TAG
+  - docker push $GATEWAY
+
+  # MONITORING
+  - export MONITORING=safeone17/geoconverter-monitoring
+  - docker build -t $MONITORING:$COMMIT ./monitoring
+  - docker tag $MONITORING:$COMMIT $MONITORING:$TAG
+  - docker push $MONITORING
+
+
+  # GEO_CONVERTER_SERVICE
+  - export GEO_CONVERTER_SERVICE=safeone17/geoconverter-service
+  - docker build -t $GEO_CONVERTER_SERVICE:$COMMIT ./geo-service
+  - docker tag $GEO_CONVERTER_SERVICE:$COMMIT $GEO_CONVERTER_SERVICE:$TAG
+  - docker push $GEO_CONVERTER_SERVICE
