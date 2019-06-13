@@ -1,4 +1,4 @@
-# GeoConverter [![Build Status](https://travis-ci.org/romask17/GeoConverter.svg?branch=master)](https://travis-ci.org/romask17/GeoConverter)
+# GeoConverter [![Build Status](https://travis-ci.org/eaxdev/GeoConverter.svg?branch=master)](https://travis-ci.org/eaxdev/GeoConverter)
 
 Приложение представляет собой микросервис, представляющий из себя простой провайдер API для прямого и обратного геокодирования (из координат в адрес и наоборот). Микросервис предоставляет RESTful API с использования JSON формата данных. 
 
