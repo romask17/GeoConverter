@@ -1,5 +1,5 @@
 FROM java:8-jre
-MAINTAINER Roman S.A. <raskidan@ya.ru>
+MAINTAINER Roman S.A. <eaxdev@ya.ru>
 
 ADD ./target/config.jar /app/
 CMD ["java", "-Xmx200m", "-jar", "/app/config.jar"]

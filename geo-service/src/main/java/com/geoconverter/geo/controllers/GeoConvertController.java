@@ -11,10 +11,14 @@ import java.util.List;
 @RestController
 public class GeoConvertController {
 
-    @Autowired
-    private YandexMapsService yandexMapsService;
+    private final YandexMapsService yandexMapsService;
 
-    @RequestMapping(method = RequestMethod.GET, path = "/convert")
+    @Autowired
+    public GeoConvertController(YandexMapsService yandexMapsService) {
+        this.yandexMapsService = yandexMapsService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/convert")
     public List<GeoObject> getGeoInformationByGeoparam(@RequestParam("geoparam") String geoParam) throws IOException {
         return yandexMapsService.getGeoInformationByGeoParam(geoParam);
 
